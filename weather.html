@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Document</title>
+</head>
+<body>
+    <div id="error"></div>
+
+    <input type="text" id="city">
+    <button onclick="getWeather()">Search</button>
+</body>
+</html>
+
+<script>
+
+    async function getWeather(){
+        let city = document.getElementById("city").value;
+        let error = document.getElementById("error");
+        try{
+              let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=c10266b812ae436862dfcc432babb1d4`);
+
+            let data = await res.json();
+
+            console.log(data);
+        }
+        catch(err) {
+            error.innerHTML = err.message;
+        }
+      
+    }
+
+</script>
